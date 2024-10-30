@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <title>{{ title }} - EasyVisit </title>
+</head>
+
+<body>
+<!-- Header starts -->
+    <header class="text-gray-600 body-font">
+        <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+            <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+                <img width="40" height="40" 
+                {% if 'Doctor' in title %} src="{{ url_for('static', filename='dicon.png') }}"
+                {% else %} src="{{ url_for('static', filename='gicon.png') }}" {% endif %}  alt="health-checkup"/>
+                <span class="ml-3 text-xl">EasyVisit</span>
+            </a>
+            <nav class="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-400	flex flex-wrap items-center text-base justify-center">
+                <a href="{{ url_for('patient.login') }}" class="mr-5 hover:text-gray-900">Home</a>
+                <a href="{{ url_for('main.doctor_directory') }}" class="mr-5 hover:text-gray-900">Doctor's Directory</a>
+                <a href="{{ url_for('main.about_us') }}" class="mr-5 hover:text-gray-900">About Us</a>
+                <a href="{{ url_for('main.contact_us') }}" class="mr-5 hover:text-gray-900">Contact Us</a>
+            </nav>
+            {% if title == "Patient Login" %}
+            <a href="{{ url_for('doctor.login') }}"><button class="inline-flex items-center bg-green-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-500 rounded text-white text-base mt-4 md:mt-0">Doctor's Portal
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg></button>
+                </a>
+                
+            {% elif title =='Doctor Login' %}
+            <a href="{{ url_for('patient.login') }}">
+                <button class="inline-flex items-center bg-indigo-500 border-0 py-2 px-4 focus:outline-none hover:bg-green-500 rounded text-white text-base mt-4 md:mt-0">Patient's Portal
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+                </svg>
+                </button>
+            </a>
+            {% endif %}
+        </div>
+    </header>
+<hr>
+<!-- Header Ends -->
+
+<!-- flash message starts -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+  {% for category, message in messages %}
+    <div class="w-full text-white bg-{{ category }}-500">
+        <div class="flex items-center justify-between px-6 py-4 mx-auto">
+            <p class="mx-3">{{message}}</p>
+        </div>
+    </div>
+
+  {% endfor %}
+{% endif %}
+{% endwith %}
+<!-- flash message ends -->
+
+
+<!-- Page contents start-->
+{% block contents %}
+
+{% endblock contents %}
+<!-- Page contents end -->
+
+<!-- Footer Starts -->
+<!-- https://icons8.com/icon/U5EiuTsvhvps/health-checkup -->
+<hr>
+    <footer class="text-gray-600 body-font">
+        <div class="container px-5 p-5 mx-auto flex items-center sm:flex-row flex-col">
+            <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+                <img width="40" height="40" 
+                {% if 'Doctor' in title %} src="{{ url_for('static', filename='dicon.png') }}"
+                {% else %} src="{{ url_for('static', filename='gicon.png') }}" {% endif %} alt="health-checkup"/>
+                <span class="ml-3 text-xl">EasyVisit</span>
+            </a>
+            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© 2024 EasyVisit Pvt. Ltd. —
+                <a href="https://github.com/compactcoder" class="text-gray-600 ml-1" rel="noopener noreferrer" target="_blank">@compactcoder</a>
+            </p>
+            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+                <a class="text-gray-500">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
+                    </svg>
+                </a>
+                <a class="ml-3 text-gray-500">
+                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
+                    <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                    <circle cx="4" cy="4" r="2" stroke="none"></circle>
+                    </svg>
+                </a>
+            </span>
+        </div>
+    </footer>
+<!-- Footer Ends -->
+</body>
+</html>

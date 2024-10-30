@@ -1,0 +1,12 @@
+{% if tupe == "email_verification" %}
+<p>Welcome! Thanks for signing up. Please follow this link to activate your account:</p>
+
+{% elif type == "password_reset" %}
+<p>Please reset your password by following this link.</p>
+
+{% endif %}
+
+<p><a href="{{ url }}">{{ url }}</a></p>
+<p>This link is valid for 60 minutes.</p>
+<br>
+<p>Cheers!</p>
