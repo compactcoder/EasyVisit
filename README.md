@@ -51,7 +51,7 @@ EasyVisit is a web-based application built with Flask and Tailwind CSS that prov
 ### Patient Registration
 ![Patient-Registration](assets/Patient-Registration.jpeg)
 ### Patient Profile
-![Patient-Profile](assets/Patient-Registration.jpeg)
+![Patient-Profile](assets/Patient-Profile-Form.jpeg)
 ### Patient Dashboard
 ![Patient-Dashboard](assets/Patient-Dashboard.jpeg)
 ### Patient/Doctor Email - Verification
